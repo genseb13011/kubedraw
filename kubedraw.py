@@ -6,5 +6,3 @@ delete_db(db_name)
 create_db(db_name)
 create_tables(db_name)
 
-show_tables(db_name)
-
