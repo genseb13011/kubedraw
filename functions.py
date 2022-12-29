@@ -33,13 +33,13 @@ def create_tables(db_name):
   #Namespace table
   c.execute('''
           CREATE TABLE IF NOT EXISTS namespace
-          ([id] INTEGER PRIMARY KEY, [name] TEXT UNIQUE)
+          ([name] TEXT PRIMARY KEY UNIQUE)
           ''')
 
   #Pods
   c.execute('''
           CREATE TABLE IF NOT EXISTS pods
-          ([id] INTEGER PRIMARY KEY, [name] TEXT UNIQUE, [namespace_id] INTEGER)
+          ([name] TEXT PRIMARY KEY UNIQUE, [namespace] TEXT)
           ''')
 
   conn.commit()
@@ -67,7 +67,7 @@ def add_namespace(db_name,namespace_name):
 
 ###
 
-def list_namespace():
+def list_k8s_namespace():
   # Configs can be set in Configuration class directly or using helper utility
   config.load_kube_config()
 
@@ -86,23 +86,23 @@ def list_namespace():
 
 # select example
 
-#def select_namespace(db_name):
-#  conn = None
-#  try:
-#    conn = sqlite3.connect(db_name)
-#  except Error as e:
-#    print(e)
-#
-#  c = conn.cursor()
-#
-#  c.execute("""
-#          SELECT * FROM namespace
-#          """
-#          )
-#
-#  rows = c.fetchall()
-#
-#  for row in rows:
-#      print(row)
-#
-#  conn.commit()
+def select_namespace(db_name):
+  conn = None
+  try:
+    conn = sqlite3.connect(db_name)
+  except Error as e:
+    print(e)
+
+  c = conn.cursor()
+
+  c.execute("""
+          SELECT * FROM namespace
+          """
+          )
+
+  rows = c.fetchall()
+
+  for row in rows:
+      print(row)
+
+  conn.commit()
