@@ -95,13 +95,13 @@ def list_k8s_namespaces():
   v1 = client.CoreV1Api()
   ret = v1.list_namespace(watch=False)
   ret_count = len(ret.items)
-  results = []
+  namespaces = []
   i = 0
   while i < ret_count:
-    result=ret.items[i].metadata.name
-    results.append(result)
+    namespace=ret.items[i].metadata.name
+    namespaces.append(namespace)
     i = i + 1
-  return results
+  return namespaces
 
 ###
 
@@ -112,11 +112,14 @@ def list_k8s_services():
   v1 = client.CoreV1Api()
   ret = v1.list_service_for_all_namespaces(watch=False)
   ret_count = len(ret.items)
-  results = []
+  services = []
+  namespaces = []
   i = 0
   while i < ret_count:
-    result=ret.items[i].metadata.name
-    results.append(result)
+    service=ret.items[i].metadata.name
+    services.append(service)
+    namespace=ret.items[i].metadata.namespace
+    namespaces.append(namespace)
     i = i + 1
   return results
 
