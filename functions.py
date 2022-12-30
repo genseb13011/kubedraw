@@ -67,12 +67,50 @@ def add_namespace(db_name,namespace_name):
 
 ###
 
-def list_k8s_namespace():
+def add_service(db_name,service_name,namespace_name):
+  conn = None
+  try:
+    conn = sqlite3.connect(db_name)
+  except Error as e:
+    print(e)
+
+  c = conn.cursor()
+
+  c.execute("""
+          INSERT INTO service(name,namespace)
+          VALUES
+          ('%s,%s')
+          """ 
+          % (service_name,namespace_name)
+          )
+          
+  conn.commit()
+
+###
+
+def list_k8s_namespaces():
   # Configs can be set in Configuration class directly or using helper utility
   config.load_kube_config()
 
   v1 = client.CoreV1Api()
   ret = v1.list_namespace(watch=False)
+  ret_count = len(ret.items)
+  results = []
+  i = 0
+  while i < ret_count:
+    result=ret.items[i].metadata.name
+    results.append(result)
+    i = i + 1
+  return results
+
+###
+
+def list_k8s_services():
+  # Configs can be set in Configuration class directly or using helper utility
+  config.load_kube_config()
+
+  v1 = client.CoreV1Api()
+  ret = v1.list_service_for_all_namespaces(watch=False)
   ret_count = len(ret.items)
   results = []
   i = 0
