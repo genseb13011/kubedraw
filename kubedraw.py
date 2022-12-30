@@ -24,4 +24,4 @@ services_count=len(services_name)
 i_services = 0
 
 while i_services < services_count:
-    add_service(db_name,services_name[i],services_namespace[i])
+    add_service(db_name,services_name[i_services],services_namespace[i_services])
