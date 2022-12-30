@@ -24,4 +24,4 @@ for service_name in services_name:
     print(service)
 
 for service_namespace in services_namespace:
-    print service_namespace
+    print(service_namespace)
