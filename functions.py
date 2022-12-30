@@ -36,9 +36,15 @@ def create_tables(db_name):
           ([name] TEXT PRIMARY KEY UNIQUE)
           ''')
 
+  #Services
+  c.execute('''
+          CREATE TABLE IF NOT EXISTS service
+          ([name] TEXT PRIMARY KEY UNIQUE, [namespace] TEXT)
+          ''')
+
   #Pods
   c.execute('''
-          CREATE TABLE IF NOT EXISTS pods
+          CREATE TABLE IF NOT EXISTS pod
           ([name] TEXT PRIMARY KEY UNIQUE, [namespace] TEXT)
           ''')
 
