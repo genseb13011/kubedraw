@@ -45,7 +45,7 @@ def create_tables(db_name):
   #Pods
   c.execute('''
           CREATE TABLE IF NOT EXISTS pod
-          ([id] INTEGER PRIMARY KEY, [name] TEXT PRIMARY KEY UNIQUE, [namespace] TEXT)
+          ([id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT)
           ''')
 
   conn.commit()
