@@ -85,9 +85,9 @@ def add_service(db_name,service_name,namespace_name):
   c.execute("""
           INSERT INTO service(name,namespace)
           VALUES
-          ('%s,%s')
+          ('%s','%s')
           """ 
-          % (service_name,namespace_name)
+          % (service_name, namespace_name)
           )
           
   conn.commit()
