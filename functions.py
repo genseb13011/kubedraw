@@ -39,13 +39,13 @@ def create_tables(db_name):
   #Services
   c.execute('''
           CREATE TABLE IF NOT EXISTS service
-          ([id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT)
+          ([id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE(name,namespace))
           ''')
 
   #Pods
   c.execute('''
           CREATE TABLE IF NOT EXISTS pod
-          ([id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT)
+          ([id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE(name,namespace))
           ''')
 
   conn.commit()
@@ -144,6 +144,29 @@ def select_namespace(db_name):
 
   c.execute("""
           SELECT * FROM namespace
+          """
+          )
+
+  rows = c.fetchall()
+
+  for row in rows:
+      print(row)
+
+  conn.commit()
+
+###
+
+  def select_service(db_name):
+  conn = None
+  try:
+    conn = sqlite3.connect(db_name)
+  except Error as e:
+    print(e)
+
+  c = conn.cursor()
+
+  c.execute("""
+          SELECT * FROM service
           """
           )
 

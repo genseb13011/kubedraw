@@ -25,3 +25,6 @@ i_services = 0
 
 while i_services < services_count:
     add_service(db_name,services_name[i_services],services_namespace[i_services])
+    i_services = i_services + 1
+
+select 
