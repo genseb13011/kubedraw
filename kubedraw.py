@@ -21,7 +21,7 @@ select_namespace(db_name)
 services_name, services_namespace = list_k8s_services()
 
 for service_name in services_name:
-    print(service)
+    print(service_name)
 
 for service_namespace in services_namespace:
     print(service_namespace)
