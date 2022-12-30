@@ -19,3 +19,6 @@ select_namespace(db_name)
 
 #insert services in database
 services = list_k8s_services()
+
+for service in services:
+    print(service)
