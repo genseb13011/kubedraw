@@ -121,7 +121,7 @@ def list_k8s_services():
     namespace=ret.items[i].metadata.namespace
     namespaces.append(namespace)
     i = i + 1
-  return results
+  return services, namespaces
 
 ###
 

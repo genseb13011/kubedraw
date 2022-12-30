@@ -18,7 +18,10 @@ for namespace in namespaces:
 select_namespace(db_name)
 
 #insert services in database
-services = list_k8s_services()
+services_name, services_namespace = list_k8s_services()
 
-for service in services:
+for service_name in services_name:
     print(service)
+
+for service_namespace in services_namespace:
+    print service_namespace
