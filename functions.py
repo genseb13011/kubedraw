@@ -39,13 +39,13 @@ def create_tables(db_name):
   #Services
   c.execute('''
           CREATE TABLE IF NOT EXISTS service
-          ([name] TEXT PRIMARY KEY UNIQUE, [namespace] TEXT)
+          ([id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT)
           ''')
 
   #Pods
   c.execute('''
           CREATE TABLE IF NOT EXISTS pod
-          ([name] TEXT PRIMARY KEY UNIQUE, [namespace] TEXT)
+          ([id] INTEGER PRIMARY KEY, [name] TEXT PRIMARY KEY UNIQUE, [namespace] TEXT)
           ''')
 
   conn.commit()
