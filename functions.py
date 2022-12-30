@@ -156,7 +156,7 @@ def select_namespace(db_name):
 
 ###
 
-  def select_service(db_name):
+def select_service(db_name):
   conn = None
   try:
     conn = sqlite3.connect(db_name)
