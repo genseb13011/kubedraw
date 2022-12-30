@@ -19,9 +19,9 @@ select_namespace(db_name)
 
 #insert services in database
 services_name, services_namespace = list_k8s_services()
+services_count=len(services_count)
 
-for service_name in services_name:
-    print(service_name)
+i_services = 0
 
-for service_namespace in services_namespace:
-    print(service_namespace)
+while i_services < services_count:
+    add_service(db_name,services_name[i],services_namespace[i])
