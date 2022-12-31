@@ -17,7 +17,7 @@ def delete_db(db_name):
   if os.path.exists(db_name):
     os.remove(db_name)
   else:
-    print("Can not delete the file as it doesn't exists")
+    print("%s cannot be delete because it doesn't exists" % (db_name))
 
 ###
 
