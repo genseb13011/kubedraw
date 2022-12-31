@@ -1,7 +1,7 @@
 ############
 #Import lib#
 ############
-from .kubedraw.functions.functions import *
+from functions import *
 
 ###############
 #Set variables#
