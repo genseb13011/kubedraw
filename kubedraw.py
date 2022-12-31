@@ -4,10 +4,17 @@ from functions import *
 #set variables
 db_name='kubedraw.db'
 
+namespace_table_request="CREATE TABLE IF NOT EXISTS namespace ([name] TEXT PRIMARY KEY UNIQUE)"
+service_table_request="CREATE TABLE IF NOT EXISTS service ([id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE(name,namespace))"
+pod_table_request="CREATE TABLE IF NOT EXISTS pod ([id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE(name,namespace))"
+
 #delete and recreate database
 delete_db(db_name)
 create_db(db_name)
-create_tables(db_name)
+
+create_table(db_name,namespace_table_request)
+create_table(db_name,service_table_request)
+create_table(db_name,pod_table_request)
 
 #insert namespaces in database
 namespaces=list_k8s_namespaces()

@@ -21,7 +21,7 @@ def delete_db(db_name):
 
 ###
 
-def create_tables(db_name):
+def create_table(db_name,create_request):
   conn = None
   try:
     conn = sqlite3.connect(db_name)
@@ -31,22 +31,7 @@ def create_tables(db_name):
   c = conn.cursor()
 
   #Namespace table
-  c.execute('''
-          CREATE TABLE IF NOT EXISTS namespace
-          ([name] TEXT PRIMARY KEY UNIQUE)
-          ''')
-
-  #Services
-  c.execute('''
-          CREATE TABLE IF NOT EXISTS service
-          ([id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE(name,namespace))
-          ''')
-
-  #Pods
-  c.execute('''
-          CREATE TABLE IF NOT EXISTS pod
-          ([id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE(name,namespace))
-          ''')
+  c.execute(create_request)
 
   conn.commit()
 
