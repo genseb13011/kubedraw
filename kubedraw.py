@@ -1,7 +1,7 @@
 ############
 #Import lib#
 ############
-from functions import *
+import functions 
 
 ###############
 #Set variables#
@@ -17,13 +17,13 @@ pod_table_request="CREATE TABLE IF NOT EXISTS pod ([id] INTEGER PRIMARY KEY, [na
 ######
 
 #delete and recreate database
-delete_db(db_name)
-create_db(db_name)
+database.delete_db(db_name)
+database.create_db(db_name)
 
 #create tables
-create_table(db_name,namespace_table_request)
-create_table(db_name,service_table_request)
-create_table(db_name,pod_table_request)
+database.create_table(db_name,namespace_table_request)
+database.create_table(db_name,service_table_request)
+database.create_table(db_name,pod_table_request)
 
 #insert namespaces in database
 namespaces=list_k8s_namespaces()
