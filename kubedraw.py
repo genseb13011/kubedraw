@@ -1,5 +1,5 @@
 #Import lib
-from .functions.functions import *
+from functions import *
 
 #set variables
 db_name='kubedraw.db'
