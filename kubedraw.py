@@ -2,6 +2,8 @@
 #Import lib#
 ############
 from functions.database import *
+from functions.namespace import *
+from functions.service import *
 
 ###############
 #Set variables#
