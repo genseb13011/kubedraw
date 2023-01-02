@@ -34,15 +34,10 @@ create_table(db_name,"configmap_columns",configmap_columns)
 create_table(db_name,"secret",secret_columns)
 
 
-#insert namespaces in database
-namespaces=k8s_list_namespaces()
-
-for namespace in namespaces:
-    add_namespace(db_name,namespace)
-
-select_namespace(db_name)
-
-#insert services in database
+#insert resources in database
+insert_namespaces(db_name)
 insert_services(db_name)
 
+select_namespaces(db_name)
 select_services(db_name)
+
