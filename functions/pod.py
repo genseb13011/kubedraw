@@ -3,7 +3,7 @@ from kubernetes import client, config
 
 ###
 
-def insert_services(db_name):
+def insert_pods(db_name):
    
   conn = None
   try:
@@ -17,21 +17,20 @@ def insert_services(db_name):
   config.load_kube_config()
 
   v1 = client.CoreV1Api()
-  services = v1.list_service_for_all_namespaces(watch=False)
-  services_count = len(services.items)
+  pods = v1.list_pod_for_all_namespaces(watch=False)
+  pods_count = len(pods.items)
   
   i = 0
-  while i < services_count:
-    name=services.items[i].metadata.name
-    namespace=services.items[i].metadata.namespace
-    selector=services.items[i].spec.selector
+  while i < pods_count:
+    name=pods.items[i].metadata.name
+    namespace=pods.items[i].metadata.namespace
 
     c.execute("""
-            INSERT INTO service(name,namespace,selector)
+            INSERT INTO pods(name,namespace)
             VALUES
-            ("%s","%s","%s")
+            ("%s","%s")
             """ 
-            % (name, namespace, selector)
+            % (name, namespace)
             )
     i = i + 1
           
@@ -39,7 +38,7 @@ def insert_services(db_name):
 
 ###
 
-def select_services(db_name):
+def select_pods(db_name):
   conn = None
   try:
     conn = sqlite3.connect(db_name)
@@ -49,7 +48,7 @@ def select_services(db_name):
   c = conn.cursor()
 
   c.execute("""
-          SELECT * FROM service
+          SELECT * FROM pods
           """
           )
 

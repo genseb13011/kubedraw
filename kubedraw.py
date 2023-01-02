@@ -37,7 +37,9 @@ create_table(db_name,"secret",secret_columns)
 #insert resources in database
 insert_namespaces(db_name)
 insert_services(db_name)
+insert_pods(db_name)
 
 select_namespaces(db_name)
 select_services(db_name)
+select_pods(db_name)
 
