@@ -11,7 +11,7 @@ from functions.service import *
 db_name='kubedraw.db'
 
 namespace_columns="[name] TEXT PRIMARY KEY UNIQUE"
-service_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE(name,namespace)"
+service_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, [selector] TEXT, UNIQUE(name,namespace)"
 deployment_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE(name,namespace)"
 pod_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE(name,namespace)"
 configmap_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE(name,namespace)"
