@@ -34,7 +34,7 @@ def insert_namespaces(db_name):
 
 ###
 
-def select_namespace(db_name):
+def select_namespaces(db_name):
   conn = None
   try:
     conn = sqlite3.connect(db_name)
