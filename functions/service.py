@@ -22,7 +22,7 @@ def add_service(db_name,service_name,namespace_name):
           
   conn.commit()
 
-def list_k8s_services():
+def k8s_list_services():
   # Configs can be set in Configuration class directly or using helper utility
   config.load_kube_config()
 

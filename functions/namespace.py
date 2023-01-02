@@ -22,7 +22,7 @@ def add_namespace(db_name,namespace_name):
 
 ###
 
-def list_k8s_namespaces():
+def k8s_list_namespaces():
   # Configs can be set in Configuration class directly or using helper utility
   config.load_kube_config()
 
