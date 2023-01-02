@@ -43,13 +43,6 @@ for namespace in namespaces:
 select_namespace(db_name)
 
 #insert services in database
-services_name, services_namespace = k8s_list_services()
-services_count=len(services_name)
-
-i_services = 0
-
-while i_services < services_count:
-    add_service(db_name,services_name[i_services],services_namespace[i_services])
-    i_services = i_services + 1
+add_service(db_name)
 
 select_service(db_name)

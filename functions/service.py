@@ -3,7 +3,8 @@ from kubernetes import client, config
 
 ###
 
-def add_service(db_name,service_name,namespace_name):
+def add_service(db_name):
+   
   conn = None
   try:
     conn = sqlite3.connect(db_name)
@@ -12,33 +13,28 @@ def add_service(db_name,service_name,namespace_name):
 
   c = conn.cursor()
 
-  c.execute("""
-          INSERT INTO service(name,namespace)
-          VALUES
-          ('%s','%s')
-          """ 
-          % (service_name, namespace_name)
-          )
-          
-  conn.commit()
-
-def k8s_list_services():
   # Configs can be set in Configuration class directly or using helper utility
   config.load_kube_config()
 
   v1 = client.CoreV1Api()
-  ret = v1.list_service_for_all_namespaces(watch=False)
-  ret_count = len(ret.items)
-  services = []
-  namespaces = []
+  services = v1.list_service_for_all_namespaces(watch=False)
+  services_count = len(ret.items)
+  
   i = 0
-  while i < ret_count:
-    service=ret.items[i].metadata.name
-    services.append(service)
+  while i < service_count:
+    name=ret.items[i].metadata.name
     namespace=ret.items[i].metadata.namespace
-    namespaces.append(namespace)
+
+    c.execute("""
+            INSERT INTO service(name,namespace)
+            VALUES
+            ('%s','%s')
+            """ 
+            % (name, namespace)
+            )
     i = i + 1
-  return services, namespaces
+          
+  conn.commit()
 
 ###
 
