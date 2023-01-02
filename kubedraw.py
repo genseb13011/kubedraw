@@ -43,6 +43,6 @@ for namespace in namespaces:
 select_namespace(db_name)
 
 #insert services in database
-add_service(db_name)
+insert_services(db_name)
 
-select_service(db_name)
+select_services(db_name)

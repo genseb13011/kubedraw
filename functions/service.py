@@ -3,7 +3,7 @@ from kubernetes import client, config
 
 ###
 
-def add_service(db_name):
+def insert_services(db_name):
    
   conn = None
   try:
@@ -38,7 +38,7 @@ def add_service(db_name):
 
 ###
 
-def select_service(db_name):
+def select_services(db_name):
   conn = None
   try:
     conn = sqlite3.connect(db_name)
