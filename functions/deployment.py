@@ -16,7 +16,7 @@ def insert_deployments(db_name):
   # Configs can be set in Configuration class directly or using helper utility
   config.load_kube_config()
 
-  v1 = client.CoreV1Api()
+  v1 = client.AppsV1Api()
   deployments = v1.list_deployment_for_all_namespaces(watch=False)
   deployments_count = len(deployments.items)
   
