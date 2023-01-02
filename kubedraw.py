@@ -10,6 +10,7 @@ from functions.configmap import *
 from functions.secret import *
 from functions.ingress import *
 from functions.ingressclass import *
+from functions.persistentvolume import *
 
 ###############
 #Set variables#
@@ -24,6 +25,7 @@ configmap_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQ
 secret_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, [type] TEXT, UNIQUE(name,namespace)"
 ingress_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE(name,namespace)"
 ingressclass_columns="[id] INTEGER PRIMARY KEY, [name] TEXT"
+persistentvolume_columns="[id] INTEGER PRIMARY KEY, [name] TEXT"
 
 ######
 #Main#
@@ -42,6 +44,7 @@ create_table(db_name,"configmap",configmap_columns)
 create_table(db_name,"secret",secret_columns)
 create_table(db_name,"ingress",ingress_columns)
 create_table(db_name,"ingressclass",ingressclass_columns)
+create_table(db_name,"persistentvolume",persistentvolume_columns)
 
 
 #insert resources in database
@@ -53,6 +56,7 @@ insert_configmaps(db_name)
 insert_secrets(db_name)
 insert_ingress(db_name)
 insert_ingressclass(db_name)
+insert_persistentvolumes(db_name)
 
 print("Namespaces")
 select_namespaces(db_name)
@@ -70,3 +74,5 @@ print("Ingress")
 select_ingress(db_name)
 print("IngressClass")
 select_ingressclass(db_name)
+print("PersistentVolumes")
+select_persistentvolumes(db_name)
