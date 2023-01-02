@@ -24,13 +24,14 @@ def insert_secrets(db_name):
   while i < secrets_count:
     name=secrets.items[i].metadata.name
     namespace=secrets.items[i].metadata.namespace
+    type=secrets.items[i].type
 
     c.execute("""
-            INSERT INTO secret(name,namespace)
+            INSERT INTO secret(name,namespace,type)
             VALUES
-            ("%s","%s")
+            ("%s","%s","%s")
             """ 
-            % (name, namespace)
+            % (name, namespace,type)
             )
     i = i + 1
           
