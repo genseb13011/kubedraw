@@ -26,7 +26,7 @@ def insert_pods(db_name):
     namespace=pods.items[i].metadata.namespace
 
     c.execute("""
-            INSERT INTO pods(name,namespace)
+            INSERT INTO pod(name,namespace)
             VALUES
             ("%s","%s")
             """ 
@@ -48,7 +48,7 @@ def select_pods(db_name):
   c = conn.cursor()
 
   c.execute("""
-          SELECT * FROM pods
+          SELECT * FROM pod
           """
           )
 
