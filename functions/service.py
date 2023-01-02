@@ -28,7 +28,7 @@ def insert_services(db_name):
     selector=services.items[i].spec.selector
 
     c.execute("""
-            INSERT INTO service(name,namespace,,type,selector)
+            INSERT INTO service(name,namespace,type,selector)
             VALUES
             ("%s","%s","%s","%s")
             """ 
