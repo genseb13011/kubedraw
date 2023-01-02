@@ -26,6 +26,8 @@ def insert_services(db_name):
     namespace=services.items[i].metadata.namespace
     selector=services.items[i].spec.selector
 
+    print(selector)
+
     c.execute("""
             INSERT INTO service(name,namespace,selector)
             VALUES
