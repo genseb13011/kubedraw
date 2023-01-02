@@ -22,6 +22,7 @@ pod_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE(nam
 configmap_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE(name,namespace)"
 secret_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, [type] TEXT, UNIQUE(name,namespace)"
 ingress_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE(name,namespace)"
+ingressclass_columns="[id] INTEGER PRIMARY KEY, [name] TEXT"
 
 ######
 #Main#
@@ -39,6 +40,7 @@ create_table(db_name,"pod",pod_columns)
 create_table(db_name,"configmap",configmap_columns)
 create_table(db_name,"secret",secret_columns)
 create_table(db_name,"ingress",ingress_columns)
+create_table(db_name,"ingressclass",ingressclass_columns)
 
 
 #insert resources in database
@@ -49,6 +51,7 @@ insert_pods(db_name)
 insert_configmaps(db_name)
 insert_secrets(db_name)
 insert_ingress(db_name)
+insert_ingressclass(db_name)
 
 print("Namespaces")
 select_namespaces(db_name)
@@ -64,3 +67,5 @@ print("Secrets")
 select_secrets(db_name)
 print("Ingress")
 select_ingress(db_name)
+print("IngressClass")
+select_ingressclass(db_name)
