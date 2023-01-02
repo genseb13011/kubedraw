@@ -18,7 +18,7 @@ def add_service(db_name):
 
   v1 = client.CoreV1Api()
   services = v1.list_service_for_all_namespaces(watch=False)
-  services_count = len(ret.items)
+  services_count = len(services.items)
   
   i = 0
   while i < service_count:
