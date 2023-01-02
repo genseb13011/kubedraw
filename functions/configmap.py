@@ -17,7 +17,7 @@ def insert_configmaps(db_name):
   config.load_kube_config()
 
   v1 = client.CoreV1Api()
-  configmaps = v1.list_pod_for_all_namespaces(watch=False)
+  configmaps = v1.list_config_map_for_all_namespaces(watch=False)
   configmaps_count = len(configmaps.items)
   
   i = 0
