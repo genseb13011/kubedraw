@@ -10,9 +10,9 @@ from functions.service import *
 ###############
 db_name='kubedraw.db'
 
-namespace_table_request="CREATE TABLE IF NOT EXISTS namespace ([name] TEXT PRIMARY KEY UNIQUE)"
-service_table_request="CREATE TABLE IF NOT EXISTS service ([id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE(name,namespace))"
-pod_table_request="CREATE TABLE IF NOT EXISTS pod ([id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE(name,namespace))"
+namespace_columns="[name] TEXT PRIMARY KEY UNIQUE"
+service_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE(name,namespace)"
+pod_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE(name,namespace)"
 
 ######
 #Main#
@@ -23,9 +23,9 @@ delete_db(db_name)
 create_db(db_name)
 
 #create tables
-create_table(db_name,namespace_table_request)
-create_table(db_name,service_table_request)
-create_table(db_name,pod_table_request)
+create_table(db_name,"namespace",namespace_columns)
+create_table(db_name,"service",service_columns)
+create_table(db_name,"pod",pod_columns)
 
 #insert namespaces in database
 namespaces=list_k8s_namespaces()

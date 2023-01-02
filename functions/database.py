@@ -20,7 +20,7 @@ def delete_db(db_name):
 
 ###
 
-def create_table(db_name,create_request):
+def create_table(db_name,table_name,columns):
   conn = None
   try:
     conn = sqlite3.connect(db_name)
@@ -30,7 +30,12 @@ def create_table(db_name,create_request):
   c = conn.cursor()
 
   #Namespace table
-  c.execute(create_request)
+  c.execute("""
+  CREATE TABLE IF NOT EXISTS %s (%s)
+  """
+  %
+  (table_name,columns)
+  )
 
   conn.commit()
 
