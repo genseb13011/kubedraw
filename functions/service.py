@@ -21,7 +21,7 @@ def add_service(db_name):
   services_count = len(services.items)
   
   i = 0
-  while i < service_count:
+  while i < services_count:
     name=services.items[i].metadata.name
     namespace=services.items[i].metadata.namespace
 
