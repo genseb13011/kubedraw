@@ -6,6 +6,7 @@ from functions.namespace import *
 from functions.service import *
 from functions.deployment import *
 from functions.pod import *
+from functions.ingress import *
 
 ###############
 #Set variables#
@@ -33,7 +34,7 @@ create_table(db_name,"namespace",namespace_columns)
 create_table(db_name,"service",service_columns)
 create_table(db_name,"deployment",deployment_columns)
 create_table(db_name,"pod",pod_columns)
-create_table(db_name,"configmap_columns",configmap_columns)
+create_table(db_name,"configmap",configmap_columns)
 create_table(db_name,"secret",secret_columns)
 create_table(db_name,"ingress",ingress_columns)
 
@@ -43,9 +44,10 @@ insert_namespaces(db_name)
 insert_services(db_name)
 insert_deployments(db_name)
 insert_pods(db_name)
+insert_ingress(db_name)
 
 select_namespaces(db_name)
 select_services(db_name)
 select_deployments(db_name)
 select_pods(db_name)
-
+select_ingress(db_name)

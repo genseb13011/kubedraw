@@ -3,7 +3,7 @@ from kubernetes import client, config
 
 ###
 
-def insert_deployments(db_name):
+def insert_ingress(db_name):
    
   conn = None
   try:
@@ -16,17 +16,17 @@ def insert_deployments(db_name):
   # Configs can be set in Configuration class directly or using helper utility
   config.load_kube_config()
 
-  v1 = client.AppsV1Api()
-  deployments = v1.list_deployment_for_all_namespaces(watch=False)
-  deployments_count = len(deployments.items)
+  v1 = client.NetworkingV1Api()
+  ingress = v1.list_ingress_for_all_namespaces(watch=False)
+  ingress_count = len(ingress.items)
   
   i = 0
-  while i < deployments_count:
-    name=deployments.items[i].metadata.name
-    namespace=deployments.items[i].metadata.namespace
+  while i < ingress_count:
+    name=ingress.items[i].metadata.name
+    namespace=ingress.items[i].metadata.namespace
 
     c.execute("""
-            INSERT INTO deployment(name,namespace)
+            INSERT INTO ingress(name,namespace)
             VALUES
             ("%s","%s")
             """ 
@@ -38,7 +38,7 @@ def insert_deployments(db_name):
 
 ###
 
-def select_deployments(db_name):
+def select_ingress(db_name):
   conn = None
   try:
     conn = sqlite3.connect(db_name)
@@ -48,7 +48,7 @@ def select_deployments(db_name):
   c = conn.cursor()
 
   c.execute("""
-          SELECT * FROM deployment
+          SELECT * FROM ingress
           """
           )
 
