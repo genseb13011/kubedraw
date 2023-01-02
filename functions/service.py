@@ -29,7 +29,7 @@ def insert_services(db_name):
     c.execute("""
             INSERT INTO service(name,namespace,selector)
             VALUES
-            ('%s','%s')
+            ('%s','%s','%s')
             """ 
             % (name, namespace,selector)
             )
