@@ -27,6 +27,10 @@ ingress_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE
 ingressclass_columns="[id] INTEGER PRIMARY KEY, [name] TEXT"
 persistentvolume_columns="[id] INTEGER PRIMARY KEY, [name] TEXT"
 
+#TODO
+#-storageclass
+#-persistentvolumeclaim
+
 ######
 #Main#
 ######
