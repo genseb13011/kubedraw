@@ -9,6 +9,7 @@ from functions.pod import *
 from functions.configmap import *
 from functions.secret import *
 from functions.ingress import *
+from functions.ingressclass import *
 
 ###############
 #Set variables#
