@@ -4,6 +4,7 @@
 from functions.database import *
 from functions.namespace import *
 from functions.service import *
+from functions.pods import *
 
 ###############
 #Set variables#
