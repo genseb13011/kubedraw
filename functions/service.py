@@ -28,13 +28,13 @@ def insert_services(db_name):
 
     print(selector)
 
-    c.execute("""
-            INSERT INTO service(name,namespace,selector)
-            VALUES
-            ('%s','%s','%s')
-            """ 
-            % (name, namespace,selector)
-            )
+    #c.execute("""
+    #        INSERT INTO service(name,namespace,selector)
+    #        VALUES
+    #        ('%s','%s','%s')
+    #        """ 
+    #        % (name, namespace,selector)
+    #        )
     i = i + 1
           
   conn.commit()
