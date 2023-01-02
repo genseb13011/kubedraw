@@ -24,14 +24,15 @@ def insert_services(db_name):
   while i < services_count:
     name=services.items[i].metadata.name
     namespace=services.items[i].metadata.namespace
+    type=services.items[i].spec.type
     selector=services.items[i].spec.selector
 
     c.execute("""
-            INSERT INTO service(name,namespace,selector)
+            INSERT INTO service(name,namespace,,type,selector)
             VALUES
-            ("%s","%s","%s")
+            ("%s","%s","%s","%s")
             """ 
-            % (name, namespace, selector)
+            % (name, namespace, type, selector)
             )
     i = i + 1
           
