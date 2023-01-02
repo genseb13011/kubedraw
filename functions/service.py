@@ -22,8 +22,8 @@ def add_service(db_name):
   
   i = 0
   while i < service_count:
-    name=ret.items[i].metadata.name
-    namespace=ret.items[i].metadata.namespace
+    name=services.items[i].metadata.name
+    namespace=services.items[i].metadata.namespace
 
     c.execute("""
             INSERT INTO service(name,namespace)
