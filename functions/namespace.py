@@ -19,14 +19,14 @@ def insert_namespaces(db_name):
 
   i = 0
   while i < namespaces_count:
-    namespace=ret.items[i].metadata.name
+    namespace=namespaces.items[i].metadata.name
 
     c.execute("""
             INSERT INTO namespace(name)
             VALUES
             ('%s')
             """ 
-            % (namespace_name)
+            % (namespace)
             )
     i = i + 1
             
