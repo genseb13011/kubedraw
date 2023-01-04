@@ -33,11 +33,20 @@ def draw_diagram(db_name):
           Ingress("%s" % (ingress))
 
         c.execute("""
-        SELECT name FROM pod where namespace = '%s'
+        SELECT name FROM deployment where namespace = '%s'
         """ % (namespace)
         )
-        pods = c.fetchall()
-        for pod in pods:
-          Pod("%s" % (pod)) 
+
+        deployments = c.fetchall()
+        for deployment in deployments:
+          with Cluster("%s" % (deployment)):
+
+          c.execute("""
+          SELECT name FROM pod where namespace = '%s' AND name like '%s*'
+          """ % (namespace,deployment)
+          )
+          pods = c.fetchall()
+          for pod in pods:
+            Pod("%s" % (pod))
 
   conn.commit()
