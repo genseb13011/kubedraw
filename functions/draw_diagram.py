@@ -30,6 +30,7 @@ def draw_diagram(db_name):
         )
         ingress_list = c.fetchall()
         for ingress in ingress_list:
-          Ingress("%s" % (ingress))
+          print(ingress)
+          #Ingress("%s" % (ingress))
 
   conn.commit()
