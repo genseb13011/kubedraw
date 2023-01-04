@@ -15,7 +15,7 @@ def draw_diagram(db_name):
   c = conn.cursor()
 
   c.execute("""
-          SELECT * FROM namespace
+          SELECT name FROM namespace
           """
           )
 
@@ -25,12 +25,11 @@ def draw_diagram(db_name):
     for namespace in namespaces:
       with Cluster("%s" % (namespace)):
         c.execute("""
-        SELECT * FROM ingress where namespace = '%s'
+        SELECT name FROM ingress where namespace = '%s'
         """% (namespace)
         )
         ingress_list = c.fetchall()
         for ingress in ingress_list:
-          print(ingress)
-          #Ingress("%s" % (ingress))
+          Ingress("%s" % (ingress))
 
   conn.commit()
