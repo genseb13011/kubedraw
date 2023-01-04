@@ -11,6 +11,7 @@ from functions.secret import *
 from functions.ingress import *
 from functions.ingressclass import *
 from functions.persistentvolume import *
+from functions.draw_diagram import *
 
 ###############
 #Set variables#
@@ -80,3 +81,5 @@ print("IngressClass")
 select_ingressclass(db_name)
 print("PersistentVolumes")
 select_persistentvolumes(db_name)
+
+draw_diagram()
