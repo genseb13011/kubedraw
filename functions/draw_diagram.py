@@ -41,12 +41,12 @@ def draw_diagram(db_name):
         for deployment in deployments:
           with Cluster("%s" % (deployment)):
 
-          c.execute("""
-          SELECT name FROM pod where namespace = '%s' AND name like '%s*'
-          """ % (namespace,deployment)
-          )
-          pods = c.fetchall()
-          for pod in pods:
-            Pod("%s" % (pod))
+            c.execute("""
+            SELECT name FROM pod where namespace = '%s' AND name like '%s*'
+            """ % (namespace,deployment)
+            )
+            pods = c.fetchall()
+            for pod in pods:
+              Pod("%s" % (pod))
 
   conn.commit()
