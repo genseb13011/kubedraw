@@ -24,9 +24,12 @@ def draw_diagram(db_name):
   with Diagram("K8S diagram", show=False):
     for namespace in namespaces:
       with Cluster("%s" % (namespace)):
-        net = Ingress("ingress1") >> Service("Service1")
-        with Cluster("Deployment1"):
-          pods = [Pod("pod1"),Pod("pod2")]
-      net >> pods
+        c.execute("""
+        SELECT * FROM ingress where namespace = '%s'
+        """% (namespace)
+        )
+        ingress_list = c.fetchall()
+        for ingress in ingress_list:
+          Ingress("%s" % (ingress))
 
   conn.commit()
