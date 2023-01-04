@@ -24,9 +24,10 @@ def draw_diagram(db_name):
   with Diagram("K8S diagram", show=False):
     for namespace in namespaces:
       with Cluster("%s" % (namespace)):
+        Namespace("%s" % (namespace))
         c.execute("""
         SELECT name FROM ingress where namespace = '%s'
-        """% (namespace)
+        """ % (namespace)
         )
         ingress_list = c.fetchall()
         for ingress in ingress_list:
