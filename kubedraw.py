@@ -82,4 +82,4 @@ select_ingressclass(db_name)
 print("PersistentVolumes")
 select_persistentvolumes(db_name)
 
-draw_diagram(dbname)
+draw_diagram(db_name)
