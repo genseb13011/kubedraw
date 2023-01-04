@@ -15,7 +15,7 @@ def draw_diagram(db_name):
   c = conn.cursor()
 
   c.execute("""
-          SELECT * FROM namespaces
+          SELECT * FROM namespace
           """
           )
 
