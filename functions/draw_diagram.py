@@ -4,7 +4,7 @@ from diagrams.k8s.compute import Deployment, Pod, ReplicaSet
 from diagrams.k8s.network import Ingress, Service
 import sqlite3
 
-def draw_diagram():
+def draw_diagram(dbname):
 
   conn = None
   try:
