@@ -43,7 +43,7 @@ def draw_diagram(db_name):
 
             c.execute("""
             SELECT name FROM pod where namespace = %s AND name like %s
-            """ % (namespace, deployment+'%')
+            """ % (namespace, deployment)
             )
             pods = c.fetchall()
             for pod in pods:
