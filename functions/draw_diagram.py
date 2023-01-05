@@ -42,7 +42,7 @@ def draw_diagram(db_name):
           with Cluster("%s" % (deployment)):
 
             c.execute("""
-            SELECT name FROM pod where namespace = '%s' AND name like '%s'
+            SELECT name FROM pod where namespace = %s AND name like %s
             """ % (namespace, deployment+'%')
             )
             pods = c.fetchall()
