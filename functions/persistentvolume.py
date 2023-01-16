@@ -3,7 +3,7 @@ from kubernetes import client, config
 
 ###
 
-def insert_persistentvolumeclaims(db_name):
+def insert_persistentvolumes(db_name):
    
   conn = None
   try:
@@ -14,18 +14,18 @@ def insert_persistentvolumeclaims(db_name):
   c = conn.cursor()
 
   # Configs can be set in Configuration class directly or using helper utility
-  config.load_incluster_config()
+  config.load_kube_config()
 
   v1 = client.CoreV1Api()
-  persistentvolumeclaims = v1.list_persistent_volume(watch=False)
-  persistentvolumeclaims_count = len(persistentvolumeclaims.items)
+  persistentvolumes = v1.list_persistent_volume(watch=False)
+  persistentvolumes_count = len(persistentvolumes.items)
   
   i = 0
-  while i < persistentvolumeclaims_count:
-    name=persistentvolumeclaims.items[i].metadata.name
+  while i < persistentvolumes_count:
+    name=persistentvolumes.items[i].metadata.name
 
     c.execute("""
-            INSERT INTO persistentvolumeclaim(name)
+            INSERT INTO persistentvolume(name)
             VALUES
             ("%s")
             """ 
@@ -37,7 +37,7 @@ def insert_persistentvolumeclaims(db_name):
 
 ###
 
-def select_persistentvolumeclaims(db_name):
+def select_persistentvolumes(db_name):
   conn = None
   try:
     conn = sqlite3.connect(db_name)
@@ -47,7 +47,7 @@ def select_persistentvolumeclaims(db_name):
   c = conn.cursor()
 
   c.execute("""
-          SELECT * FROM persistentvolumeclaim
+          SELECT * FROM persistentvolume
           """
           )
 
