@@ -29,7 +29,7 @@ def insert_ingress(db_name):
     c.execute("""
             INSERT INTO ingress(name,namespace,ingressclass)
             VALUES
-            ("%s","%s")
+            ("%s","%s","%s")
             """ 
             % (name, namespace, ingressclassname)
             )
