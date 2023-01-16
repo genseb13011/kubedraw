@@ -12,6 +12,7 @@ from functions.ingress import *
 from functions.ingressclass import *
 from functions.persistentvolume import *
 from functions.storageclass import *
+from functions.persistentvolumeclaim import *
 from functions.draw_diagram import *
 
 ###############
@@ -29,10 +30,7 @@ ingress_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE
 ingressclass_columns="[id] INTEGER PRIMARY KEY, [name] TEXT"
 persistentvolume_columns="[id] INTEGER PRIMARY KEY, [name] TEXT"
 storageclass_columns="[id] INTEGER PRIMARY KEY, [name] TEXT"
-
-#TODO
-#-storageclass
-#-persistentvolumeclaim
+persistentvolumeclaim_columns="[id] INTEGER PRIMARY KEY, [name] TEXT"
 
 ######
 #Main#
@@ -53,6 +51,7 @@ create_table(db_name,"ingress",ingress_columns)
 create_table(db_name,"ingressclass",ingressclass_columns)
 create_table(db_name,"persistentvolume",persistentvolume_columns)
 create_table(db_name,"storageclass",storageclass_columns)
+create_table(db_name,"persistentvolumeclaim",persistentvolumeclaim_columns)
 
 
 #insert resources in database
@@ -66,6 +65,7 @@ insert_ingress(db_name)
 insert_ingressclass(db_name)
 insert_persistentvolumes(db_name)
 insert_storageclass(db_name)
+insert_persistentvolumeclaims(db_name)
 
 print("Namespaces")
 select_namespaces(db_name)
@@ -87,5 +87,7 @@ print("PersistentVolumes")
 select_persistentvolumes(db_name)
 print("storageclass")
 select_storageclasses(db_name)
+print("PersistentVolumeClaims")
+select_persistentvolumeclaims(db_name)
 
 draw_diagram(db_name)
