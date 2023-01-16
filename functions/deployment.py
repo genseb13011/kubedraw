@@ -24,13 +24,14 @@ def insert_deployments(db_name):
   while i < deployments_count:
     name=deployments.items[i].metadata.name
     namespace=deployments.items[i].metadata.namespace
+    selector=deployments.items[i].spec.selector.match_labels
 
     c.execute("""
-            INSERT INTO deployment(name,namespace)
+            INSERT INTO deployment(name,namespace,selector)
             VALUES
-            ("%s","%s")
+            ("%s","%s","%s")
             """ 
-            % (name, namespace)
+            % (name, namespace,selector)
             )
     i = i + 1
           
