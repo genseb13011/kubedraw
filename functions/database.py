@@ -40,3 +40,25 @@ def create_table(db_name,table_name,columns):
   conn.commit()
 
 ###
+
+def db_select(db_name,table_name):
+  conn = None
+  try:
+    conn = sqlite3.connect(db_name)
+  except Error as e:
+    print(e)
+
+  c = conn.cursor()
+
+  c.execute("""
+          SELECT * FROM %s
+          """
+          % (table_name)
+          )
+
+  rows = c.fetchall()
+
+  for row in rows:
+      print(row)
+
+  conn.commit()
