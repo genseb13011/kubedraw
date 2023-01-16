@@ -28,7 +28,7 @@ configmap_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQ
 secret_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, [type] TEXT, UNIQUE(name,namespace)"
 ingress_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE(name,namespace)"
 ingressclass_columns="[id] INTEGER PRIMARY KEY, [name] TEXT"
-persistentvolume_columns="[id] INTEGER PRIMARY KEY, [name] TEXT"
+persistentvolume_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [storageclassname] TEXT"
 storageclass_columns="[id] INTEGER PRIMARY KEY, [name] TEXT"
 persistentvolumeclaim_columns="[id] INTEGER PRIMARY KEY, [name] TEXT"
 

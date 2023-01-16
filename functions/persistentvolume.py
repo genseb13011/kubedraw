@@ -23,13 +23,14 @@ def insert_persistentvolumes(db_name):
   i = 0
   while i < persistentvolumes_count:
     name=persistentvolumes.items[i].metadata.name
+    storageclassname=persistentvolumes.items[i].metadata.storageClassName
 
     c.execute("""
-            INSERT INTO persistentvolume(name)
+            INSERT INTO persistentvolume(name,storageclassname)
             VALUES
-            ("%s")
+            ("%s","%s")
             """ 
-            % (name)
+            % (name,storageclassname)
             )
     i = i + 1
           
