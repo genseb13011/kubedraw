@@ -23,7 +23,7 @@ def insert_persistentvolumes(db_name):
   i = 0
   while i < persistentvolumes_count:
     name=persistentvolumes.items[i].metadata.name
-    storageclassname=persistentvolumes.items[i].metadata.storageClassName
+    storageclassname=persistentvolumes.items[i].spec.storageClassName
 
     c.execute("""
             INSERT INTO persistentvolume(name,storageclassname)
