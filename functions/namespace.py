@@ -11,7 +11,7 @@ def insert_namespaces(db_name):
   c = conn.cursor()
 
   # Configs can be set in Configuration class directly or using helper utility
-  config.load_kube_config()
+  config.load_incluster_config()
 
   v1 = client.CoreV1Api()
   namespaces = v1.list_namespace(watch=False)

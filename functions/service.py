@@ -14,7 +14,7 @@ def insert_services(db_name):
   c = conn.cursor()
 
   # Configs can be set in Configuration class directly or using helper utility
-  config.load_kube_config()
+  config.load_incluster_config()
 
   v1 = client.CoreV1Api()
   services = v1.list_service_for_all_namespaces(watch=False)

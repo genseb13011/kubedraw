@@ -14,7 +14,7 @@ def insert_configmaps(db_name):
   c = conn.cursor()
 
   # Configs can be set in Configuration class directly or using helper utility
-  config.load_kube_config()
+  config.load_incluster_config()
 
   v1 = client.CoreV1Api()
   configmaps = v1.list_config_map_for_all_namespaces(watch=False)
