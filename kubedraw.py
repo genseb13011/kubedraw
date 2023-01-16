@@ -11,6 +11,7 @@ from functions.secret import *
 from functions.ingress import *
 from functions.ingressclass import *
 from functions.persistentvolume import *
+from functions.storageclass import *
 from functions.draw_diagram import *
 
 ###############
@@ -27,6 +28,7 @@ secret_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, [type] 
 ingress_columns="[id] INTEGER PRIMARY KEY, [name] TEXT, [namespace] TEXT, UNIQUE(name,namespace)"
 ingressclass_columns="[id] INTEGER PRIMARY KEY, [name] TEXT"
 persistentvolume_columns="[id] INTEGER PRIMARY KEY, [name] TEXT"
+storageclass_columns="[id] INTEGER PRIMARY KEY, [name] TEXT"
 
 #TODO
 #-storageclass
@@ -50,6 +52,7 @@ create_table(db_name,"secret",secret_columns)
 create_table(db_name,"ingress",ingress_columns)
 create_table(db_name,"ingressclass",ingressclass_columns)
 create_table(db_name,"persistentvolume",persistentvolume_columns)
+create_table(db_name,"storageclass",storageclass_columns)
 
 
 #insert resources in database
@@ -62,6 +65,7 @@ insert_secrets(db_name)
 insert_ingress(db_name)
 insert_ingressclass(db_name)
 insert_persistentvolumes(db_name)
+insert_storageclass(db_name)
 
 print("Namespaces")
 select_namespaces(db_name)
@@ -81,5 +85,7 @@ print("IngressClass")
 select_ingressclass(db_name)
 print("PersistentVolumes")
 select_persistentvolumes(db_name)
+print("storageclass")
+select_storageclasses(db_name)
 
 draw_diagram(db_name)
