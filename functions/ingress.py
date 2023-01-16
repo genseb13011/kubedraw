@@ -24,13 +24,14 @@ def insert_ingress(db_name):
   while i < ingress_count:
     name=ingress.items[i].metadata.name
     namespace=ingress.items[i].metadata.namespace
+    ingressclassname=ingress.items[i].spec.ingress_class_name
 
     c.execute("""
-            INSERT INTO ingress(name,namespace)
+            INSERT INTO ingress(name,namespace,ingressclass)
             VALUES
             ("%s","%s")
             """ 
-            % (name, namespace)
+            % (name, namespace, ingressclassname)
             )
     i = i + 1
           
