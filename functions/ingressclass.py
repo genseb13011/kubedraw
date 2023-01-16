@@ -34,26 +34,3 @@ def insert_ingressclass(db_name):
     i = i + 1
           
   conn.commit()
-
-###
-
-def select_ingressclass(db_name):
-  conn = None
-  try:
-    conn = sqlite3.connect(db_name)
-  except Error as e:
-    print(e)
-
-  c = conn.cursor()
-
-  c.execute("""
-          SELECT * FROM ingressclass
-          """
-          )
-
-  rows = c.fetchall()
-
-  for row in rows:
-      print(row)
-
-  conn.commit()

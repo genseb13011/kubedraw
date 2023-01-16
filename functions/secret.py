@@ -36,26 +36,3 @@ def insert_secrets(db_name):
     i = i + 1
           
   conn.commit()
-
-###
-
-def select_secrets(db_name):
-  conn = None
-  try:
-    conn = sqlite3.connect(db_name)
-  except Error as e:
-    print(e)
-
-  c = conn.cursor()
-
-  c.execute("""
-          SELECT * FROM secret
-          """
-          )
-
-  rows = c.fetchall()
-
-  for row in rows:
-      print(row)
-
-  conn.commit()
