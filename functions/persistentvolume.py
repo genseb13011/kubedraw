@@ -14,7 +14,7 @@ def insert_persistentvolumes(db_name):
   c = conn.cursor()
 
   # Configs can be set in Configuration class directly or using helper utility
-  config.load_kube_config()
+  config.load_incluster_config()
 
   v1 = client.CoreV1Api()
   persistentvolumes = v1.list_persistent_volume(watch=False)
