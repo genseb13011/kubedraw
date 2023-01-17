@@ -18,6 +18,7 @@ def insert_ingress(db_name):
 
   v1 = client.NetworkingV1Api()
   ingress = v1.list_ingress_for_all_namespaces(watch=False)
+  services=[]
   ingress_count = len(ingress.items)
   
   i = 0
@@ -25,6 +26,16 @@ def insert_ingress(db_name):
     name=ingress.items[i].metadata.name
     namespace=ingress.items[i].metadata.namespace
     ingressclassname=ingress.items[i].spec.ingress_class_name
+    rules_length=len(ingress.items[i].spec.rules)
+    j = 0
+    while j < rules_length:
+      path_length=len(ingress.items[i].spec.rules[j].http.paths)
+      k=0
+      while k < path_length:
+        service_name=ingress.items[i].spec.rules[j].http.paths[k].backend.service.name
+        services.append(service_name)
+      j = j + 1
+    
 
     c.execute("""
             INSERT INTO ingress(name,namespace,ingressclass)
