@@ -34,6 +34,7 @@ def insert_ingress(db_name):
       while k < path_length:
         service_name=ingress.items[i].spec.rules[j].http.paths[k].backend.service.name
         services.append(service_name)
+        k = k + 1
       j = j + 1
     
 
