@@ -37,10 +37,10 @@ def insert_ingress(db_name):
         k = k + 1
       j = j + 1
     
-    services_length=len(services)
+    services_list_length=len(services_list)
     services_result=""
     i=0
-    while i < services_length:
+    while i < services_list_length:
       services_result.append(services[i]+",")
 
     c.execute("""
