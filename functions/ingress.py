@@ -41,7 +41,7 @@ def insert_ingress(db_name):
     services_result=""
     i=0
     while i < services_list_length:
-      services_result.append(services[i]+",")
+      services_result = services_result + services_list[i]
 
     c.execute("""
             INSERT INTO ingress(name,namespace,ingressclass,services)
